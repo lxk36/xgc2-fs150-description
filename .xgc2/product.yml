@@ -1,7 +1,7 @@
 schema: xgc2.product.v1
 id: xgc2-fs150-description
 name: XGC2 FS150 Description
-version: 0.1.0-6
+version: 0.1.0-7
 kind: ros1-apt
 summary: ROS Noetic visual description assets for the XGC2 FS150 airframe.
 ros:
@@ -30,4 +30,4 @@ ownership:
   - /opt/ros/noetic/share/fs150_description
 release:
   apt_versions:
-    focal: 0.1.0-6
+    focal: 0.1.0-7
