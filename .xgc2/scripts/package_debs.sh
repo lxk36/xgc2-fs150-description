@@ -3,7 +3,7 @@ set -euo pipefail
 
 INSTALL_ROOT=""
 OUTPUT_DIR=""
-ROS_DISTRO="${ROS_DISTRO:-noetic}"
+ROS_DISTRO="${ROS_DISTRO:-jazzy}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 PACKAGE="ros-${ROS_DISTRO}-xgc2-fs150-description"
@@ -63,6 +63,9 @@ copy_path() {
 }
 
 copy_path "${PREFIX_ROOT}/share/${ROS_PACKAGE}"
+copy_path "${PREFIX_ROOT}/share/ament_index/resource_index/packages/${ROS_PACKAGE}"
+copy_path "${PREFIX_ROOT}/share/ament_index/resource_index/package_run_dependencies/${ROS_PACKAGE}"
+copy_path "${PREFIX_ROOT}/share/ament_index/resource_index/parent_prefix_path/${ROS_PACKAGE}"
 
 cat > "${PKG_ROOT}/DEBIAN/control" <<EOF
 Package: ${PACKAGE}
@@ -72,7 +75,7 @@ Priority: optional
 Architecture: ${ARCH}
 Maintainer: XGC2 <apt@example.com>
 Depends: ros-${ROS_DISTRO}-urdf
-Description: XGC2 FS150 visual description assets
+Description: XGC2 ROS 2 FS150 visual description assets
 EOF
 
 printf '%s package\n' "${PACKAGE}" > "${PKG_ROOT}/usr/share/doc/${PACKAGE}/README"

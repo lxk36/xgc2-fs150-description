@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-grep -q '^id: xgc2-fs150-description$' .xgc2/product.yml
-grep -q '^version: 0.1.0-9$' .xgc2/product.yml
-grep -q '^kind: ros1-apt$' .xgc2/product.yml
-grep -q '^  distro: noetic$' .xgc2/product.yml
+grep -q '^id: xgc2-ros-jazzy-fs150-description$' .xgc2/product.yml
+grep -q '^version: 0.1.0-1$' .xgc2/product.yml
+grep -q '^kind: ros2-apt$' .xgc2/product.yml
+grep -q '^  distro: jazzy$' .xgc2/product.yml
 grep -q '<name>fs150_description</name>' package.xml
 grep -q '<license>Proprietary</license>' package.xml
+grep -q '<build_type>ament_cmake</build_type>' package.xml
 grep -q '^  - fs150_description$' .xgc2/product.yml
-grep -q '^  - ros-noetic-xgc2-fs150-description$' .xgc2/product.yml
-grep -q 'ros-noetic-urdf' .xgc2/product.yml
+grep -q '^  - ros-jazzy-xgc2-fs150-description$' .xgc2/product.yml
+grep -q 'ros-jazzy-urdf' .xgc2/product.yml
 test -f meshes/iris.stl
 test -f meshes/iris_prop_ccw.dae
 test -f meshes/iris_prop_cw.dae
