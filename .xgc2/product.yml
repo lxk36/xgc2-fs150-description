@@ -1,7 +1,7 @@
 schema: xgc2.product.v1
 id: xgc2-fs150-description
 name: XGC2 FS150 Description
-version: 0.1.0-8
+version: 0.1.0-9
 kind: ros1-apt
 summary: ROS Noetic visual description assets for the XGC2 FS150 airframe.
 ros:
@@ -14,6 +14,10 @@ apt:
   - ros-noetic-xgc2-fs150-description
   packages:
   - ros-noetic-xgc2-fs150-description
+  package_architectures:
+    ros-noetic-xgc2-fs150-description:
+    - amd64
+    - arm64
   depends:
   - ros-noetic-urdf
 usage:
@@ -24,10 +28,16 @@ usage:
     '
   smoke_test: 'rospack find fs150_description
 
+    test -f /opt/ros/noetic/share/fs150_description/urdf/fs150_visual.urdf
+
     '
 ownership:
   paths:
   - /opt/ros/noetic/share/fs150_description
 release:
+  repository: lxk36/xgc2-fs150-description
+  ref: noetic
+  workflow: release.yml
+  ci_workflow: ci.yml
   apt_versions:
-    focal: 0.1.0-8
+    focal: 0.1.0-9

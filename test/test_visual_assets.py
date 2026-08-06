@@ -64,6 +64,42 @@ class Fs150VisualAssetsTest(unittest.TestCase):
             self.assertEqual(len(stl), 84 + triangle_count * 50)
             self.assertEqual(triangle_count, int(polylist.attrib["count"]))
 
+    def test_mesh_references_resolve_inside_this_package(self) -> None:
+        root = ET.parse(PACKAGE / "urdf" / "fs150_visual.urdf").getroot()
+        prefix = "package://fs150_description/"
+        referenced = set()
+        for mesh in root.findall(".//mesh"):
+            filename = mesh.attrib["filename"]
+            self.assertTrue(filename.startswith(prefix), filename)
+            relative = filename[len(prefix) :]
+            self.assertFalse(Path(relative).is_absolute(), relative)
+            self.assertNotIn("..", Path(relative).parts)
+            self.assertTrue((PACKAGE / relative).is_file(), relative)
+            referenced.add(relative)
+
+        self.assertEqual(
+            referenced,
+            {
+                "meshes/iris.stl",
+                "meshes/iris_prop_ccw.stl",
+                "meshes/iris_prop_cw.stl",
+            },
+        )
+
+    def test_package_remains_visual_only(self) -> None:
+        root = ET.parse(PACKAGE / "urdf" / "fs150_visual.urdf").getroot()
+        self.assertGreater(len(root.findall(".//visual")), 0)
+        for forbidden in (
+            "collision",
+            "inertial",
+            "transmission",
+            "gazebo",
+            "plugin",
+        ):
+            self.assertEqual(root.findall(f".//{forbidden}"), [], forbidden)
+        for joint in root.findall("joint"):
+            self.assertEqual(joint.attrib["type"], "fixed", joint.attrib["name"])
+
 
 if __name__ == "__main__":
     unittest.main()
