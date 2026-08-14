@@ -35,7 +35,7 @@ ownership:
   paths:
   - /opt/ros/noetic/share/fs150_description
 release:
-  repository: lxk36/xgc2-fs150-description
+  repository: XGC-Team/xgc2-fs150-description
   ref: noetic
   workflow: release.yml
   ci_workflow: ci.yml
