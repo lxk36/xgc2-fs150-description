@@ -40,7 +40,7 @@ ownership:
   - /opt/ros/jazzy/share/ament_index/resource_index/package_run_dependencies/fs150_description
   - /opt/ros/jazzy/share/ament_index/resource_index/parent_prefix_path/fs150_description
 release:
-  repository: lxk36/xgc2-fs150-description
+  repository: XGC-Team/xgc2-fs150-description
   ref: jazzy
   workflow: release.yml
   ci_workflow: ci.yml
