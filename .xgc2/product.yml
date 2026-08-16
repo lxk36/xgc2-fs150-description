@@ -1,7 +1,7 @@
 schema: xgc2.product.v1
 id: xgc2-ros-jazzy-fs150-description
 name: XGC2 ROS Jazzy FS150 Description
-version: 0.1.0-1
+version: 0.1.0-2
 kind: ros2-apt
 summary: ROS 2 Jazzy visual description assets for the XGC2 FS150 airframe.
 ros:
@@ -45,4 +45,4 @@ release:
   workflow: release.yml
   ci_workflow: ci.yml
   apt_versions:
-    noble: 0.1.0-1
+    noble: 0.1.0-2
